@@ -1,7 +1,7 @@
 /**
  * AI Atoms - Core client-side state management
  *
- * Following better-auth's session-atom.ts pattern, this file provides
+ * Following unblocked's session-atom.ts pattern, this file provides
  * the core AI-related atoms that are built into the client.
  */
 
@@ -53,7 +53,7 @@ export interface AIUser {
   image?: string | null;
 }
 
-// Following better-auth's pattern - export a function that creates atoms
+// Following unblocked's pattern - export a function that creates atoms
 export function getAIAtoms($fetch: BetterFetch) {
   // Create signal atoms for triggering queries
   const $chatSignal = atom<boolean>(false);
@@ -69,7 +69,7 @@ export function getAIAtoms($fetch: BetterFetch) {
   const $chatVisibility = atom<'private' | 'public'>('private');
   const $selectedModel = atom<string>('gpt-4o-mini');
 
-  // Use query pattern like better-auth for models
+  // Use query pattern like unblocked for models
   const models = useAIQuery<ModelsResponse>(
     $modelsSignal,
     '/api/models',

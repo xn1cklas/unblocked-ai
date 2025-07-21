@@ -1,0 +1,89 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Chat {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime
+  title      String
+  userId     String
+  visibility String
+  messages   Message[]
+  votes      Vote[]
+  streams    Stream[]
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  chatId      Int
+  chat        Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  role        String
+  parts       String
+  attachments String
+  createdAt   DateTime
+  votes       Vote[]
+}
+
+model Vote {
+  id        Int     @id @default(autoincrement())
+  chatId    Int
+  chat      Chat    @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  messageId Int
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  isUpvoted Boolean
+}
+
+model Document {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime
+  title     String
+  content   String?
+  kind      String
+  userId    String
+}
+
+model Suggestion {
+  id                Int      @id @default(autoincrement())
+  documentId        String
+  documentCreatedAt DateTime
+  originalText      String
+  suggestedText     String
+  description       String?
+  isResolved        Boolean
+  userId            String
+  createdAt         DateTime
+}
+
+model Stream {
+  id        Int      @id @default(autoincrement())
+  chatId    Int
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  createdAt DateTime
+}
+
+model User {
+  id               Int         @id @default(autoincrement())
+  twoFactorEnabled Boolean?
+  username         String?
+  displayUsername  String?
+  twofactors       TwoFactor[]
+
+  @@unique([username])
+  @@map("user")
+}
+
+model TwoFactor {
+  id          Int    @id @default(autoincrement())
+  secret      String
+  backupCodes String
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("twoFactor")
+}

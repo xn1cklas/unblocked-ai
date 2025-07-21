@@ -1,4 +1,4 @@
-import { createRandomStringGenerator } from '@better-auth/utils/random';
+import { createRandomStringGenerator } from '@unblocked/utils/random';
 export const generateRandomString = createRandomStringGenerator(
   'a-z',
   '0-9',

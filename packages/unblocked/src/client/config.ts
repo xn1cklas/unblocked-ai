@@ -48,7 +48,7 @@ export const getClientConfig = (options?: ClientOptions) => {
   });
   const plugins = options?.plugins || [];
   const pluginsActions = {} as Record<string, any>;
-  // Start with built-in AI atoms - pass $fetch like better-auth
+  // Start with built-in AI atoms - pass $fetch like unblocked
   const aiAtoms = getAIAtoms($fetch);
   const pluginsAtoms = aiAtoms as Record<string, any>;
   const pluginPathMethods: Record<

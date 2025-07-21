@@ -60,7 +60,7 @@ export function createUnblockedClient<Option extends ClientOptions>(
     $fetch,
     $store,
   };
-  // Create a dynamic proxy using better-auth pattern
+  // Create a dynamic proxy using unblocked pattern
   const endpointProxy = createDynamicPathProxy(
     routes,
     $fetch,

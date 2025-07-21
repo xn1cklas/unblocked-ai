@@ -1,5 +1,5 @@
 /**
- * React client for Unblocked - Following better-auth patterns
+ * React client for Unblocked - Following unblocked patterns
  *
  * This file provides the React-specific client that automatically generates
  * hooks from atoms registered by plugins.

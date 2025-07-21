@@ -348,4 +348,4 @@ We would like to thank the following projects that have inspired and contributed
 
 - **[Vercel AI SDK](https://github.com/vercel/ai)** - We extensively use the Vercel AI SDK as our foundation for AI integrations, streaming capabilities, and provider abstractions. Their excellent work on standardizing AI interactions has been invaluable.
 
-- **[Better Auth](https://github.com/better-auth/better-auth)** - We drew architectural inspiration from Better Auth for our configuration setup, client/server implementations, and framework/database agnostic approach. Their excellent patterns for building developer-friendly SDKs served as a benchmark for our project structure.
+- **[Better Auth](https://github.com/unblocked/unblocked)** - We drew architectural inspiration from Better Auth for our configuration setup, client/server implementations, and framework/database agnostic approach. Their excellent patterns for building developer-friendly SDKs served as a benchmark for our project structure.

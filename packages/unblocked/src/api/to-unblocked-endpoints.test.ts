@@ -420,7 +420,7 @@ describe('disabled paths', async () => {
 
   it('should return 404 for disabled paths', async () => {
     // Skip this test as disabled paths functionality needs to be implemented for unblocked
-    // This was a better-auth feature that doesn't apply to our AI SDK
+    // This was a unblocked feature that doesn't apply to our AI SDK
     expect(true).toBe(true);
   });
 });

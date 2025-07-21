@@ -1,6 +1,6 @@
-import { base64 } from '@better-auth/utils/base64';
-// Using @better-auth/utils npm package for crypto utilities
-import { createHash } from '@better-auth/utils/hash';
+import { base64 } from '@unblocked/utils/base64';
+// Using @unblocked/utils npm package for crypto utilities
+import { createHash } from '@unblocked/utils/hash';
 import { constantTimeEqual } from './buffer';
 
 export async function hashToBase64(
