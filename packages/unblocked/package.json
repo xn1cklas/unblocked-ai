@@ -1,0 +1,458 @@
+{
+  "name": "unblocked",
+  "version": "0.0.1",
+  "description": "The most comprehensive AI SDK for TypeScript.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unblocked/unblocked",
+    "directory": "packages/unblocked"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "gpt",
+    "anthropic",
+    "openai",
+    "typescript",
+    "nextjs",
+    "vercel-ai"
+  ],
+  "scripts": {
+    "build": "unbuild --clean",
+    "dev": "concurrently \"unbuild --watch\" \"npm run dev:types\"",
+    "dev:types": "tsc --project tsconfig.declarations.json --watch",
+    "build:types": "tsc --project tsconfig.declarations.json",
+    "stub": "unbuild --stub",
+    "pretest": "pnpm prisma:normal:push && pnpm prisma:number-id:push",
+    "test": "vitest",
+    "prisma:normal:push": "prisma db push --schema src/adapters/prisma-adapter/test/normal-tests/schema.prisma",
+    "prisma:number-id:push": "prisma db push --schema src/adapters/prisma-adapter/test/number-id-tests/schema.prisma",
+    "bump": "bumpp",
+    "typecheck": "pnpm prisma:normal:push && pnpm prisma:number-id:push && tsc --noEmit"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./client": {
+      "import": {
+        "types": "./dist/client/index.d.ts",
+        "default": "./dist/client/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/index.d.cts",
+        "default": "./dist/client/index.cjs"
+      }
+    },
+    "./client/plugins": {
+      "import": {
+        "types": "./dist/client/plugins/index.d.ts",
+        "default": "./dist/client/plugins/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/plugins/index.d.cts",
+        "default": "./dist/client/plugins/index.cjs"
+      }
+    },
+    "./types": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/types/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/types/index.cjs"
+      }
+    },
+    "./crypto": {
+      "import": {
+        "types": "./dist/crypto/index.d.ts",
+        "default": "./dist/crypto/index.mjs"
+      },
+      "require": {
+        "types": "./dist/crypto/index.d.cts",
+        "default": "./dist/crypto/index.cjs"
+      }
+    },
+    "./react": {
+      "import": {
+        "types": "./dist/client/react/index.d.ts",
+        "default": "./dist/client/react/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/react/index.d.cts",
+        "default": "./dist/client/react/index.cjs"
+      }
+    },
+    "./solid": {
+      "import": {
+        "types": "./dist/client/solid/index.d.ts",
+        "default": "./dist/client/solid/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/solid/index.d.cts",
+        "default": "./dist/client/solid/index.cjs"
+      }
+    },
+    "./api": {
+      "import": {
+        "types": "./dist/api/index.d.ts",
+        "default": "./dist/api/index.mjs"
+      },
+      "require": {
+        "types": "./dist/api/index.d.cts",
+        "default": "./dist/api/index.cjs"
+      }
+    },
+    "./db": {
+      "import": {
+        "types": "./dist/db/index.d.ts",
+        "default": "./dist/db/index.mjs"
+      },
+      "require": {
+        "types": "./dist/db/index.d.cts",
+        "default": "./dist/db/index.cjs"
+      }
+    },
+    "./vue": {
+      "import": {
+        "types": "./dist/client/vue/index.d.ts",
+        "default": "./dist/client/vue/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/vue/index.d.cts",
+        "default": "./dist/client/vue/index.cjs"
+      }
+    },
+    "./plugins": {
+      "import": {
+        "types": "./dist/plugins/index.d.ts",
+        "default": "./dist/plugins/index.mjs"
+      },
+      "require": {
+        "types": "./dist/plugins/index.d.cts",
+        "default": "./dist/plugins/index.cjs"
+      }
+    },
+    "./svelte-kit": {
+      "import": {
+        "types": "./dist/integrations/svelte-kit.d.ts",
+        "default": "./dist/integrations/svelte-kit.mjs"
+      },
+      "require": {
+        "types": "./dist/integrations/svelte-kit.d.cts",
+        "default": "./dist/integrations/svelte-kit.cjs"
+      }
+    },
+    "./solid-start": {
+      "import": {
+        "types": "./dist/integrations/solid-start.d.ts",
+        "default": "./dist/integrations/solid-start.mjs"
+      },
+      "require": {
+        "types": "./dist/integrations/solid-start.d.cts",
+        "default": "./dist/integrations/solid-start.cjs"
+      }
+    },
+    "./svelte": {
+      "import": {
+        "types": "./dist/client/svelte/index.d.ts",
+        "default": "./dist/client/svelte/index.mjs"
+      },
+      "require": {
+        "types": "./dist/client/svelte/index.d.cts",
+        "default": "./dist/client/svelte/index.cjs"
+      }
+    },
+    "./next-js": {
+      "import": {
+        "types": "./dist/integrations/next-js.d.ts",
+        "default": "./dist/integrations/next-js.mjs"
+      },
+      "require": {
+        "types": "./dist/integrations/next-js.d.cts",
+        "default": "./dist/integrations/next-js.cjs"
+      }
+    },
+    "./react-start": {
+      "import": {
+        "types": "./dist/integrations/react-start.d.ts",
+        "default": "./dist/integrations/react-start.mjs"
+      },
+      "require": {
+        "types": "./dist/integrations/react-start.d.cts",
+        "default": "./dist/integrations/react-start.cjs"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/integrations/node.d.ts",
+        "default": "./dist/integrations/node.mjs"
+      },
+      "require": {
+        "types": "./dist/integrations/node.d.cts",
+        "default": "./dist/integrations/node.cjs"
+      }
+    },
+    "./adapters/prisma": {
+      "import": {
+        "types": "./dist/adapters/prisma-adapter/index.d.ts",
+        "default": "./dist/adapters/prisma-adapter/index.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/prisma-adapter/index.d.cts",
+        "default": "./dist/adapters/prisma-adapter/index.cjs"
+      }
+    },
+    "./adapters/drizzle": {
+      "import": {
+        "types": "./dist/adapters/drizzle-adapter/index.d.ts",
+        "default": "./dist/adapters/drizzle-adapter/index.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/drizzle-adapter/index.d.cts",
+        "default": "./dist/adapters/drizzle-adapter/index.cjs"
+      }
+    },
+    "./adapters/mongodb": {
+      "import": {
+        "types": "./dist/adapters/mongodb-adapter/index.d.ts",
+        "default": "./dist/adapters/mongodb-adapter/index.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/mongodb-adapter/index.d.cts",
+        "default": "./dist/adapters/mongodb-adapter/index.cjs"
+      }
+    },
+    "./adapters/memory": {
+      "import": {
+        "types": "./dist/adapters/memory-adapter/index.d.ts",
+        "default": "./dist/adapters/memory-adapter/index.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/memory-adapter/index.d.cts",
+        "default": "./dist/adapters/memory-adapter/index.cjs"
+      }
+    },
+    "./adapters/test": {
+      "import": {
+        "types": "./dist/adapters/test.d.ts",
+        "default": "./dist/adapters/test.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/test.d.cts",
+        "default": "./dist/adapters/test.cjs"
+      }
+    },
+    "./adapters": {
+      "import": {
+        "types": "./dist/adapters/index.d.ts",
+        "default": "./dist/adapters/index.mjs"
+      },
+      "require": {
+        "types": "./dist/adapters/index.d.cts",
+        "default": "./dist/adapters/index.cjs"
+      }
+    },
+    "./plugins/quota": {
+      "import": {
+        "types": "./dist/plugins/quota/index.d.ts",
+        "default": "./dist/plugins/quota/index.mjs"
+      },
+      "require": {
+        "types": "./dist/plugins/quota/index.d.cts",
+        "default": "./dist/plugins/quota/index.cjs"
+      }
+    },
+    "./plugins/rag": {
+      "import": {
+        "types": "./dist/plugins/rag/index.d.ts",
+        "default": "./dist/plugins/rag/index.mjs"
+      },
+      "require": {
+        "types": "./dist/plugins/rag/index.d.cts",
+        "default": "./dist/plugins/rag/index.cjs"
+      }
+    },
+    "./providers": {
+      "import": {
+        "types": "./dist/providers/index.d.ts",
+        "default": "./dist/providers/index.mjs"
+      },
+      "require": {
+        "types": "./dist/providers/index.d.cts",
+        "default": "./dist/providers/index.cjs"
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.ts"
+      ],
+      "node": [
+        "./dist/integrations/node.d.ts"
+      ],
+      "react": [
+        "./dist/client/react/index.d.ts"
+      ],
+      "vue": [
+        "./dist/client/vue/index.d.ts"
+      ],
+      "svelte": [
+        "./dist/client/svelte/index.d.ts"
+      ],
+      "client": [
+        "./dist/client/index.d.ts"
+      ],
+      "client/plugins": [
+        "./dist/client/plugins/index.d.ts"
+      ],
+      "types": [
+        "./dist/types/index.d.ts"
+      ],
+      "crypto": [
+        "./dist/crypto/index.d.ts"
+      ],
+      "solid": [
+        "./dist/client/solid/index.d.ts"
+      ],
+      "api": [
+        "./dist/api/index.d.ts"
+      ],
+      "db": [
+        "./dist/db/index.d.ts"
+      ],
+      "svelte-kit": [
+        "./dist/integrations/svelte-kit.d.ts"
+      ],
+      "solid-start": [
+        "./dist/integrations/solid-start.d.ts"
+      ],
+      "next-js": [
+        "./dist/integrations/next-js.d.ts"
+      ],
+      "react-start": [
+        "./dist/integrations/react-start.d.ts"
+      ],
+      "adapters": [
+        "./dist/adapters/index.d.ts"
+      ],
+      "adapters/prisma": [
+        "./dist/adapters/prisma-adapter/index.d.ts"
+      ],
+      "adapters/drizzle": [
+        "./dist/adapters/drizzle-adapter/index.d.ts"
+      ],
+      "adapters/mongodb": [
+        "./dist/adapters/mongodb-adapter/index.d.ts"
+      ],
+      "adapters/memory": [
+        "./dist/adapters/memory-adapter/index.d.ts"
+      ],
+      "plugins": [
+        "./dist/plugins/index.d.ts"
+      ],
+      "plugins/quota": [
+        "./dist/plugins/quota/index.d.ts"
+      ],
+      "plugins/rag": [
+        "./dist/plugins/rag/index.d.ts"
+      ],
+      "providers": [
+        "./dist/providers/index.d.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "2.0.0-beta.1",
+    "@ai-sdk/google": "2.0.0-beta.1",
+    "@ai-sdk/mistral": "2.0.0-beta.1",
+    "@ai-sdk/openai": "2.0.0-beta.1",
+    "@ai-sdk/provider": "2.0.0-beta.1",
+    "@ai-sdk/react": "2.0.0-beta.6",
+    "@ai-sdk/svelte": "3.0.0-beta.24",
+    "@ai-sdk/vue": "2.0.0-beta.25",
+    "@ai-sdk/xai": "2.0.0-beta.2",
+    "@better-auth/utils": "0.2.5",
+    "@better-fetch/fetch": "1.1.18",
+    "@noble/ciphers": "^0.6.0",
+    "@noble/hashes": "^1.8.0",
+    "@simplewebauthn/browser": "^13.1.2",
+    "@simplewebauthn/server": "^13.1.2",
+    "ai": "5.0.0-beta.6",
+    "better-call": "1.0.12",
+    "defu": "^6.1.4",
+    "jose": "^6.0.12",
+    "kysely": "^0.28.3",
+    "nanostores": "^0.11.4",
+    "zod": "^3.25.76"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "svelte": "^4.0.0 || ^5.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.22.0",
+    "@tanstack/react-start": "^1.128.6",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.4",
+    "@types/prompts": "^2.4.9",
+    "@types/react": "^19.1.8",
+    "better-sqlite3": "^11.10.0",
+    "concurrently": "^9.2.0",
+    "drizzle-orm": "^0.39.3",
+    "happy-dom": "^15.11.7",
+    "hono": "^4.8.5",
+    "listhen": "^1.9.0",
+    "mongodb": "^6.17.0",
+    "mysql2": "^3.14.2",
+    "next": "15.3.0-canary.31",
+    "pg": "^8.16.3",
+    "prisma": "^5.22.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-native": "~0.74.7",
+    "solid-js": "^1.9.7",
+    "tarn": "^3.0.2",
+    "tedious": "^18.6.1",
+    "typescript": "5.8.3",
+    "unbuild": "3.5.0",
+    "vitest": "^2.1.9",
+    "vue": "^3.5.17"
+  },
+  "overrides": {
+    "whatwg-url": "^14.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

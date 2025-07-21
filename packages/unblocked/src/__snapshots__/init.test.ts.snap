@@ -1,0 +1,283 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`init > should match config 1`] = `
+{
+  "adapter": {
+    "count": [Function],
+    "create": [Function],
+    "createSchema": undefined,
+    "delete": [Function],
+    "deleteMany": [Function],
+    "findMany": [Function],
+    "findOne": [Function],
+    "id": "kysely",
+    "options": {
+      "adapterConfig": {
+        "adapterId": "kysely",
+        "adapterName": "Kysely Adapter",
+        "debugLogs": false,
+        "supportsBooleans": false,
+        "supportsDates": false,
+        "supportsJSON": false,
+        "supportsNumericIds": true,
+        "usePlural": undefined,
+      },
+      "debugLogs": false,
+      "type": "sqlite",
+    },
+    "update": [Function],
+    "updateMany": [Function],
+  },
+  "appName": "Unblocked",
+  "baseURL": "http://localhost:3000/api/unblocked",
+  "generateId": [Function],
+  "getUser": [Function],
+  "internalAdapter": {
+    "createChat": [Function],
+    "createDocument": [Function],
+    "createMessage": [Function],
+    "createRateLimit": [Function],
+    "createStream": [Function],
+    "createSuggestion": [Function],
+    "createVote": [Function],
+    "deleteChat": [Function],
+    "deleteDocument": [Function],
+    "deleteMessage": [Function],
+    "deleteRateLimit": [Function],
+    "deleteStream": [Function],
+    "deleteVote": [Function],
+    "findChat": [Function],
+    "findChats": [Function],
+    "findChatsByUser": [Function],
+    "findDocument": [Function],
+    "findDocuments": [Function],
+    "findDocumentsByUser": [Function],
+    "findMessage": [Function],
+    "findMessages": [Function],
+    "findMessagesByChat": [Function],
+    "findRateLimit": [Function],
+    "findStream": [Function],
+    "findSuggestion": [Function],
+    "findSuggestionsByDocument": [Function],
+    "findVote": [Function],
+    "findVotesByMessage": [Function],
+    "updateChat": [Function],
+    "updateDocument": [Function],
+    "updateMessage": [Function],
+    "updateStream": [Function],
+    "updateSuggestion": [Function],
+    "updateVote": [Function],
+  },
+  "logger": {
+    "debug": [Function],
+    "error": [Function],
+    "info": [Function],
+    "success": [Function],
+    "warn": [Function],
+  },
+  "options": {
+    "basePath": "/api/unblocked",
+    "baseURL": "http://localhost:3000",
+    "database": Database {
+      "inTransaction": false,
+      "memory": true,
+      "name": ":memory:",
+      "open": true,
+      "readonly": false,
+    },
+    "plugins": [],
+    "secret": "unblocked-secret-123456789",
+    "user": {
+      "getUser": [Function],
+    },
+  },
+  "runMigrations": [Function],
+  "secondaryStorage": undefined,
+  "secret": "unblocked-secret-123456789",
+  "tables": {
+    "chat": {
+      "fields": {
+        "createdAt": {
+          "defaultValue": [Function],
+          "required": true,
+          "type": "date",
+        },
+        "title": {
+          "required": true,
+          "type": "string",
+        },
+        "userId": {
+          "required": true,
+          "type": "string",
+        },
+        "visibility": {
+          "defaultValue": "private",
+          "required": true,
+          "type": [
+            "public",
+            "private",
+          ],
+        },
+      },
+      "modelName": "Chat",
+      "order": 1,
+    },
+    "document": {
+      "fields": {
+        "content": {
+          "required": false,
+          "type": "string",
+        },
+        "createdAt": {
+          "defaultValue": [Function],
+          "required": true,
+          "type": "date",
+        },
+        "kind": {
+          "defaultValue": "text",
+          "required": true,
+          "type": [
+            "text",
+            "code",
+            "image",
+            "sheet",
+          ],
+        },
+        "title": {
+          "required": true,
+          "type": "string",
+        },
+        "userId": {
+          "required": true,
+          "type": "string",
+        },
+      },
+      "modelName": "Document",
+      "order": 4,
+    },
+    "message": {
+      "fields": {
+        "attachments": {
+          "required": true,
+          "type": "string",
+        },
+        "chatId": {
+          "references": {
+            "field": "id",
+            "model": "Chat",
+            "onDelete": "cascade",
+          },
+          "required": true,
+          "type": "string",
+        },
+        "createdAt": {
+          "defaultValue": [Function],
+          "required": true,
+          "type": "date",
+        },
+        "parts": {
+          "required": true,
+          "type": "string",
+        },
+        "role": {
+          "required": true,
+          "type": "string",
+        },
+      },
+      "modelName": "Message",
+      "order": 2,
+    },
+    "stream": {
+      "fields": {
+        "chatId": {
+          "references": {
+            "field": "id",
+            "model": "Chat",
+            "onDelete": "cascade",
+          },
+          "required": true,
+          "type": "string",
+        },
+        "createdAt": {
+          "defaultValue": [Function],
+          "required": true,
+          "type": "date",
+        },
+      },
+      "modelName": "Stream",
+      "order": 6,
+    },
+    "suggestion": {
+      "fields": {
+        "createdAt": {
+          "defaultValue": [Function],
+          "required": true,
+          "type": "date",
+        },
+        "description": {
+          "required": false,
+          "type": "string",
+        },
+        "documentCreatedAt": {
+          "required": true,
+          "type": "date",
+        },
+        "documentId": {
+          "required": true,
+          "type": "string",
+        },
+        "isResolved": {
+          "defaultValue": false,
+          "required": true,
+          "type": "boolean",
+        },
+        "originalText": {
+          "required": true,
+          "type": "string",
+        },
+        "suggestedText": {
+          "required": true,
+          "type": "string",
+        },
+        "userId": {
+          "required": true,
+          "type": "string",
+        },
+      },
+      "modelName": "Suggestion",
+      "order": 5,
+    },
+    "vote": {
+      "fields": {
+        "chatId": {
+          "references": {
+            "field": "id",
+            "model": "Chat",
+            "onDelete": "cascade",
+          },
+          "required": true,
+          "type": "string",
+        },
+        "isUpvoted": {
+          "required": true,
+          "type": "boolean",
+        },
+        "messageId": {
+          "references": {
+            "field": "id",
+            "model": "Message",
+            "onDelete": "cascade",
+          },
+          "required": true,
+          "type": "string",
+        },
+      },
+      "modelName": "Vote",
+      "order": 3,
+    },
+  },
+  "trustedOrigins": [
+    "http://localhost:3000",
+  ],
+}
+`;

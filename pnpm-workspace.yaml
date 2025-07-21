@@ -2,3 +2,8 @@ packages:
   - "apps/*"
   - "packages/*"
   - "demo/*"
+catalog:
+  "better-call": "^1.0.8"
+  "@better-fetch/fetch": "^1.1.18"
+  "unbuild": "^3.5.0"
+  "typescript": "^5.7.3"

@@ -1,0 +1,74 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["strictUndefinedChecks"]
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:.db/dev.db"
+}
+
+// Minimal user table for test reference integrity
+model User {
+    id        String   @id @default(cuid())
+    name      String
+    email     String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Chat {
+    id         String    @id @default(cuid())
+    createdAt  DateTime  @default(now())
+    title      String
+    userId     String
+    visibility String    @default("private")
+    messages   Message[]
+    streams    Stream[]
+}
+
+model Message {
+    id          String   @id @default(cuid())
+    chatId      String
+    chat        Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+    role        String
+    parts       String   // JSON serialized
+    attachments String   // JSON serialized
+    createdAt   DateTime @default(now())
+}
+
+model Vote {
+    chatId     String
+    messageId  String
+    isUpvoted  Boolean
+    
+    @@id([chatId, messageId])
+}
+
+model Document {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    title     String
+    content   String?
+    kind      String   @default("text")
+    userId    String
+}
+
+model Suggestion {
+    id               String   @id @default(cuid())
+    documentId       String
+    documentCreatedAt DateTime
+    originalText     String
+    suggestedText    String
+    description      String?
+    isResolved       Boolean  @default(false)
+    userId           String
+    createdAt        DateTime @default(now())
+}
+
+model Stream {
+    id        String   @id @default(cuid())
+    chatId    String
+    chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+}

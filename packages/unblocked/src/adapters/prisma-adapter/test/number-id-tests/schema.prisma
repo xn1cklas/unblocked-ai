@@ -1,0 +1,74 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["strictUndefinedChecks"]
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:.db/dev.db"
+}
+
+// Minimal user table for test reference integrity
+model User {
+    id        Int      @id @default(autoincrement())
+    name      String
+    email     String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Chat {
+    id         Int       @id @default(autoincrement())
+    createdAt  DateTime  @default(now())
+    title      String
+    userId     String    // Keep as string for external auth
+    visibility String    @default("private")
+    messages   Message[]
+    streams    Stream[]
+}
+
+model Message {
+    id          Int      @id @default(autoincrement())
+    chatId      Int
+    chat        Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+    role        String
+    parts       String   // JSON serialized
+    attachments String   // JSON serialized
+    createdAt   DateTime @default(now())
+}
+
+model Vote {
+    chatId     Int
+    messageId  Int
+    isUpvoted  Boolean
+    
+    @@id([chatId, messageId])
+}
+
+model Document {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    title     String
+    content   String?
+    kind      String   @default("text")
+    userId    String   // Keep as string for external auth
+}
+
+model Suggestion {
+    id               Int      @id @default(autoincrement())
+    documentId       Int
+    documentCreatedAt DateTime
+    originalText     String
+    suggestedText    String
+    description      String?
+    isResolved       Boolean  @default(false)
+    userId           String   // Keep as string for external auth
+    createdAt        DateTime @default(now())
+}
+
+model Stream {
+    id        Int      @id @default(autoincrement())
+    chatId    Int
+    chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+}
