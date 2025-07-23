@@ -1,9 +1,13 @@
 packages:
-  - "apps/*"
-  - "packages/*"
-  - "demo/*"
+  - apps/*
+  - packages/*
+  - demo/*
+
 catalog:
-  "better-call": "^1.0.8"
-  "@better-fetch/fetch": "^1.1.18"
-  "unbuild": "^3.5.0"
-  "typescript": "^5.7.3"
+  '@better-fetch/fetch': ^1.1.18
+  better-call: ^1.0.8
+  typescript: ^5.7.3
+  unbuild: ^3.5.0
+
+configDependencies:
+  '@pnpm/plugin-types-fixer': 0.1.0+sha512-bLww63gRHi7siYTqFJb5qNdcXadU0jv20Et6z5AryMZ7FlLolbEJOrXLpg8+amQZNHHNW1dfFUBGVw/9ezQbFg==
